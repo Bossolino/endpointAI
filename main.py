@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from services.ai_service import resChatbot
 
 origins = [
     "https://simonemartini.site:8000"
@@ -10,12 +11,11 @@ app.add_middleware(CORSMiddleware,  allow_origins=origins, allow_credentials=Tru
 
 
 @app.get("/chatbot")
-async def chatbot(data:dict):
+async def chatbot(msg:str):
 
-    if not data.message or not data.role:
+    if not msg:
         raise HTTPException(status_code=400, detail="no valid data send")
 
-    
+    response = await resChatbot(msg)
 
-    # funzione mattew
-    return {"response":""}
+    return {"response":response}
