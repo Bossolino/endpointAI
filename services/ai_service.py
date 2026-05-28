@@ -7,14 +7,9 @@ async def resChatbot(msg: str):
         messages=[
                 {
                     "role": "system",
-                    "content": "Rispondi SEMPRE e SOLO in italiano. Risposte brevi e dirette, senza divagare."
-                },
-                {
-                    "role": "user",
-                    "content": msg
+                    "content": "Rispondi SEMPRE e SOLO in italiano. Risposte brevi e dirette, senza divagare. "+msg
                 }
-            ],
-        timeout=60
+            ]
     )
-    
+
     return (response.message.content)

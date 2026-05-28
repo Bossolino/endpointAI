@@ -13,7 +13,7 @@ app.add_middleware(CORSMiddleware,  allow_origins=origins, allow_credentials=Tru
 @app.get("/chatbot")
 async def chatbot(msg:str):
 
-    if not msg:
+    if not msg or msg == "":
         raise HTTPException(status_code=400, detail="no valid data send")
 
     response = await resChatbot(msg)
